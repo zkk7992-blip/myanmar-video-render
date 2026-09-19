@@ -7,7 +7,6 @@ def generate_pro_video(input_vid, text_content, output_name):
         text_content,
         fontsize=70,
         color='white',
-        font='fonts/Pyidaungsu.ttf',
         method='caption',
         size=(clip.w * 0.8, None)
     )
@@ -16,4 +15,4 @@ def generate_pro_video(input_vid, text_content, output_name):
     final.write_videofile(output_name, codec="libx264", audio_codec="aac", fps=24)
 
 if __name__ == "__main__":
-    generate_pro_video("input/raw.mp4", "မင်းအဆဲခံရတော့မယ်၊ ဆောက်ခွက်", "final_output.mp4")
+    generate_pro_video("input/raw.mp4", "Test Video", "final_output.mp4")
