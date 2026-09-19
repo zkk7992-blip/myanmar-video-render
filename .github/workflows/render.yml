@@ -1,0 +1,18 @@
+import os
+from moviepy.editor import VideoFileClip, TextClip, CompositeVideoClip
+
+# မင်းလို loop ပတ်ပြီး render လုပ်နေစရာမလိုဘူး
+def generate_pro_video(input_vid, text_content, output_name):
+    # 1. Load Video
+    clip = VideoFileClip(input_vid)
+    
+    # 2. Better Font Rendering (Android မှာ မှန်အောင် Custom Font သုံးမယ်)
+    txt_clip = TextClip(text_content, fontsize=70, color='white', font='Pyidaungsu.ttf', method='caption')
+    txt_clip = txt_clip.set_position('center').set_duration(clip.duration)
+    
+    # 3. Overlay and Render (One-pass render - Fast as hell)
+    final = CompositeVideoClip([clip, txt_clip])
+    final.write_videfile(output_name, codec="libx264", audio_codec="aac", fps=24)
+
+# One click execution
+generate_pro_video("raw.mp4", "မင်းအဆဲခံရတော့မယ်၊ ဆောက်ခွက်", "final_output.mp4")
